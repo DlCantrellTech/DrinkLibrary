@@ -6,8 +6,9 @@
 
 using namespace std;
 
-class DRINKFUNCTIONS {
-    
+class Drink {
+    private:
+        string drinkName;
 };
 
 //function prototypes
