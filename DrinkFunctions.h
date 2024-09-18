@@ -8,10 +8,37 @@ using namespace std;
 
 class Drink {
     private:
-        string drinkName;
-};
+        string drinkName, pairing;
+        int servings;
+        Recipe drinkRecipe;
 
-//function prototypes
-int DisplayMenuGetChoice();
+    public:
+
+        //constructor
+        Drink();
+        Drink(string, int, string, Recipe);
+        
+        //destructor
+        ~Drink();
+
+        //accessor functions
+        string getName() const;
+        int getServings() const;
+        string getPairing() const;
+        Recipe getRecipe() const;
+
+        //setter functions
+        void setName(string);
+        void setServings(int);
+        void setPairing(string);
+        void setRecipe(Recipe);
+
+        //function prototypes
+        int DisplayMenuGetChoice();
+        void createDrink(string, int, string, Recipe);
+        void printDrink();
+        void editDrink();
+
+};
 
 #endif
