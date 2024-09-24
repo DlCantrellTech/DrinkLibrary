@@ -16,9 +16,10 @@ void DrinkLibrary::readIn()
     ifstream input;                 // cin file
 
     // choose which file to read from
-    int choice;
-    string fileName;
-    do{
+    int choice, numDrinks = 0;
+    string fileName, inputCounter;
+
+    do {
         cout << "\n\nWhich file would you like to read from?\n";
         cout << "\t1. Working Library\n";
         cout << "\t2. Test Case\n";
@@ -40,7 +41,7 @@ void DrinkLibrary::readIn()
                 break;
         }
 
-    }while(choice != 3);
+    }while (choice != 3);
 
     input.open(fileName);
 
@@ -49,14 +50,20 @@ void DrinkLibrary::readIn()
         cout << "\n\t\tFailed to open input file. Check for input.txt." << endl;
         return;
     }
-    
+
+    // count numDrinks
+    while (getline(input, inputCounter, '\n'))
+    {
+        numDrinks++;
+    }
+
     drinks = new Drink*[numDrinks]; // dynamically allocate array of pointers to Drink
 
     for (int i = 0; i < numDrinks; i++)
     {
       string name, pairing, glassware, instructions;
       string* ingredients;
-      int alchololPercentage, numIngredients;
+      int alchololPercentage, numIngredients;   // need to incorperate numIngredients into Recipe class
 
       // obtain values for parameters from input file
       getline(input, name, '*');
@@ -66,7 +73,7 @@ void DrinkLibrary::readIn()
 
       getline(input, pairing, '*');
 
-      input >> numIngredients;
+      input >> numIngredients;                  // need to incorperate numIngredients into Recipe class
       input.ignore();               // ingore *
       ingredients = new string[numIngredients];
       for(int j = 0; j < numIngredients; j++)
@@ -87,4 +94,142 @@ void DrinkLibrary::readIn()
 
     input.close();
 }
+
+void DrinkLibrary::makeNew() {
+    ofstream output;  // output file stream
+    string fileName;
+    int numDrinks;
+
+    cout << "\n\t\tEnter the name of the new library file (ex. My Drinks): ";
+    cin >> fileName;
+
+    cout << "How many drinks would you like to add? ";
+    cin >> numDrinks;
+
+    drinks = new Drink*[numDrinks];  // dynamically allocate array of pointers to Drink
+
+    for (int i = 0; i < numDrinks; i++) {
+        string name, pairing, glassware, instructions;
+        int alcoholPercentage, numIngredients;
+
+        cout << "\n\t\tEntering details for drink #" << (i + 1) << endl;
+        
+        cout << "\n\t\tName: ";
+        cin.ignore();
+        getline(cin, name);
+        
+        cout << "\n\t\tAlcohol Percentage: ";
+        cin >> alcoholPercentage;
+
+        cout << "\n\t\tPairing: ";
+        cin.ignore();
+        getline(cin, pairing);
+
+        cout << "\n\t\tNumber of Ingredients: ";
+        cin >> numIngredients;
+        string* ingredients = new string[numIngredients];
+        for (int j = 0; j < numIngredients; j++) {
+            cout << "\n\t\tIngredient #: " << (j + 1) << ": ";
+            cin.ignore();
+            getline(cin, ingredients[j]);
+        }
+
+        cout << "\n\t\tGlassware: ";
+        getline(cin, glassware);
+
+        cout << "\n\t\tInstructions (type full instructions before hitting enter): ";
+        getline(cin, instructions);
+
+        // Create a Recipe object
+        Recipe drinkRecipe(ingredients, glassware, instructions);
+
+        // Create a Drink object
+        drinks[i] = new Drink(name, alcoholPercentage, pairing, drinkRecipe);
+    }
+
+    output.open(fileName);
+    if (output.fail()) {
+        cout << "\n\t\tFailed to open output file." << endl;
+        return;
+    }
+
+    // Write drinks to the file
+    for (int i = 0; i < numDrinks; i++) {
+        output << drinks[i]->getName() << "*"
+               << drinks[i]->getAlcoholPercentage() << "*"
+               << drinks[i]->getPairing() << "*"
+               << drinks[i]->getRecipe().getnumIngredients() << "*";
+
+        string* ingredients = drinks[i]->getRecipe().getIngredients();
+        for (int j = 0; j < drinks[i]->getRecipe().getnumIngredients(); j++) {
+            output << ingredients[j] << (j < drinks[i]->getRecipe().getnumIngredients() - 1 ? "*" : "");
+        }
+
+        output << "*" 
+               << drinks[i]->getRecipe().getGlassware() << "*" 
+               << drinks[i]->getRecipe().getInstructions() << "*" << endl;
+    }
+
+    output.close();
+    cout << "New drink library saved to " << fileName << endl;
+
+    // Clean up dynamically allocated ingredients
+    for (int i = 0; i < numDrinks; i++) {
+        delete[] drinks[i]->getRecipe().getIngredients(); 
+    }
+    delete[] drinks;                                      // clean up the drinks array
+}
+
+void DrinkLibrary::printDrinks(Drink** drinks, int numDrinks)
+{
+    if (numDrinks <=0 )
+    {
+        cout << "\n\t\tNo drinks available." << endl;
+        return;
+    }
+
+    for (int i = 0; i < numDrinks; i++)
+    {
+        // print Drink variables
+        cout << "\t\t--------------------------" << endl;
+        cout << "\n\t\tDrink #: "<< i + 1 << endl;
+        cout << "\t\tName: " << drinks[i]->getName() << endl;
+        cout << "\t\tAlcohol Percentage: " << drinks[i]->getAlcoholPercentage() << "%" << endl;
+        cout << "\t\tPairing: " << drinks[i]->getPairing() << endl;
+
+        // print ingredients
+        string* ingredients = drinkRecipe.getIngredients();
+        int numIngredients = drinkRecipe.getnumIngredients();
+        cout << "\t\tIngredients: " << endl;
+        for (int j = 0; j < numIngredients; j++)
+        {
+            cout << " * " << ingredients[j] << endl;
+        }
+
+        // print rest of Recipe
+        cout << "\t\tGlassware: " << drinkRecipe.getGlassware() << endl;
+        cout << "\t\tInstructions: " << drinkRecipe.getInstructions() << endl;
+
+    }
+}
+
+//constructors
+DrinkLibrary::DrinkLibrary()
+{
+    drinks = nullptr;
+    numDrinks = 0;
+}
+
+DrinkLibrary::DrinkLibrary(Drink** drinks, int numDrinks)
+{
+    this->drinks = drinks;
+    this->numDrinks = numDrinks;
+}
+
+//destructor
+DrinkLibrary::~DrinkLibrary()
+{
+    cout << "\nDrinkLibrary deleted successfully" << endl;
+}
+
 
