@@ -8,7 +8,7 @@
 #ifndef DrinkLibrary_h
 #define DrinkLibrary_h
 
-#include "DrinkFunctions.h"
+#include "Drink.h"
 
 using namespace std;
 
@@ -18,9 +18,12 @@ class DrinkLibrary {
         int numDrinks;
 
         void readIn();
+        void printDrinks(Drink** drinks, int numDrinks);
+
     public:
         //constructor
         DrinkLibrary();
+        DrinkLibrary(Drink**, int);
 
         //destructor
         ~DrinkLibrary();
