@@ -15,10 +15,9 @@ using namespace std;
 class DrinkLibrary {
     private:
         Drink** drinks; // pointer to array of pointers to Drink
-        int numDrinks;  // number of drinks in library
+        int numDrinks;
 
         void readIn();
-        void makeNew();
         void printDrinks(Drink** drinks, int numDrinks);
 
     public:
