@@ -22,6 +22,10 @@ Drink::~Drink() {
     cout << "\nDrink deleted successfully\n";
 }
 
+string Drink::getName() {
+    return drinkName;
+}
+
 //prints the drinks information
 void Drink::printDrink() {
     cout << "\nDrink Name: " << drinkName << endl

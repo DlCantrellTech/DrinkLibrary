@@ -94,9 +94,9 @@ int DrinkLibrary::DisplayMenuGetChoice() {
     int choice;
 
     cout << "WELCOME MESSAGE\n"
-		 << "1 - Display\n"
-		 << "2 - Add\n"
-		 << "3 - Remove\n"
+		 << "1 - Display all Drinks\n"
+		 << "2 - Add a Drink\n"
+		 << "3 - Edit a Drink\n"
          << "4 - End the Program\n"
 		 << "\nCHOICE: ";
 
@@ -112,7 +112,7 @@ void DrinkLibrary::printDrinks() {
         drinks[i]->printDrink();
 }
 
-//adds a drink to the library - WIP
+//adds a drink to the library
 void DrinkLibrary::addDrink() {
     string drinkName, pairing;
     double alcoholPercentage;
@@ -142,4 +142,49 @@ void DrinkLibrary::addDrink() {
     drinks = newDrinksArray;
     numDrinks++;
 
+}
+
+void DrinkLibrary::editDrinks() {
+    int drinkIndex, choice;
+    
+    cout << "Displaying All Drinks:\n";
+    for(int i = 0; i < numDrinks; i++)
+        cout << "(" << i+1 << ") Drink Name: " << drinks[i]->getName() << endl;
+    
+    cout << "\nWhich Drink do you want to Edit: ";
+    cin >> drinkIndex;
+    drinkIndex--;
+
+    cout << "1 - Edit Name\n"
+        << "2 - Edit Alcohol Percentage\n"
+        << "3 - Edit Pairing\n"
+        << "4 - Remove Drink\n"
+        << "5 - Back to Main\n"
+        << "\nCHOICE: ";
+
+    cin >> choice;
+
+    switch(choice) {
+        case 1:
+            cout << "New Drink Name: ";
+            getline(cin, drinks[drinkIndex]->)
+            break;
+        case 2:
+            cout << "New Alcohol Percentage: ";
+
+            break;
+        case 3:
+            cout << "New Drink Pairing: ";
+
+            break;
+        case 4:
+            cout << "Drink " << drinkIndex << " Removed\n"
+
+            break;
+        case 5:
+            cout << "Returning to Main Menu.\n";
+            break;
+        default:
+            cout << "Invalid choice Please try again.\n";
+    }
 }

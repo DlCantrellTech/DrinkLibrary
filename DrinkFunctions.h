@@ -24,6 +24,7 @@ class Drink {
         ~Drink();
 
         //function prototypes
+        string getName();
         void printDrink();
         void editDrink();
 

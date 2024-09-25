@@ -29,6 +29,7 @@ class DrinkLibrary {
         int DisplayMenuGetChoice();
         void addDrink();
         void printDrinks();
+        void editDrinks();
 };
 
 
