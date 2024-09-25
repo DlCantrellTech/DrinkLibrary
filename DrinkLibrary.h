@@ -8,7 +8,7 @@
 #ifndef DrinkLibrary_h
 #define DrinkLibrary_h
 
-#include "DrinkFunctions.h"
+#include "Drink.h"
 
 using namespace std;
 

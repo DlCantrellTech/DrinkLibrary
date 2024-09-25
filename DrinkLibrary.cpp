@@ -7,7 +7,7 @@
 #include "DrinkLibrary.h"   // header file
 #include <fstream>          // allow input from input text file
 #include <iostream>
-#include "DrinkFunctions.h"
+#include "Drink.h"
 #include "Recipe.h"
 
 using namespace std;
@@ -23,7 +23,7 @@ void DrinkLibrary::readIn()
     do {
         cout << "\n\nWhich file would you like to read from?\n";
         cout << "\t1. Working Library\n";
-        cout << "\t2. Test Case\n";
+        cout << "\t2. Other\n";
         cout << "\t3. Back\n";
         cin >> choice;
         while(choice < 1 || choice > 3)
@@ -38,7 +38,8 @@ void DrinkLibrary::readIn()
                 break;
 
             case 2:
-                fileName = "TEST_CASE.txt";
+                cout << "\n\t\tEnter name of file: " << endl;
+                getline(cin, fileName);
                 break;
         }
 
@@ -48,7 +49,7 @@ void DrinkLibrary::readIn()
 
     if (input.fail())               // fail case
     {
-        cout << "\n\t\tFailed to open input file. Check for input.txt." << endl;
+        cout << "\n\t\tFailed to open input file. Check for " << fileName << "and try again." << endl;
         return;
     }
 
@@ -57,9 +58,9 @@ void DrinkLibrary::readIn()
     {
         numDrinks++;
     }
-
     drinks = new Drink*[numDrinks]; // dynamically allocate array of pointers to Drink
-
+    this->numDrinks = numDrinks;    // set numDrinks to the equivalent class variable
+    
     for (int i = 0; i < numDrinks; i++)
     {
       string name, pairing, glassware, instructions;
@@ -74,7 +75,7 @@ void DrinkLibrary::readIn()
 
       getline(input, pairing, '*');
 
-      input >> numIngredients;                  // need to incorperate numIngredients into Recipe class
+      input >> numIngredients;                  // need to incorperate numIngredients into Recipe class !!!!!!!!!!!!!!!!!!
       input.ignore();               // ingore *
       ingredients = new string[numIngredients];
       for(int j = 0; j < numIngredients; j++)
