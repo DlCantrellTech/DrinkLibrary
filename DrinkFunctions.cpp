@@ -1,6 +1,8 @@
-int BadInputProtection(int choice);
+#include <DrinkFunctions.h>
+
+int BadInputProtection(int choice)
 {
-    cout << "That choice was not an option. Please, try again."
+    cout << "That choice was not an option. Please, try again.";
     cin >> choice;
     
     return choice;
