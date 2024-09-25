@@ -14,10 +14,10 @@ class Recipe
         string instructions = " ";
     public:
         //Constructor
-        Recipe();
+        Recipe::Recipe();
 
         //Deconstructor
-        ~Recipe();
+        Recipe::~Recipe();
 
         //Function Prototypes
         void createRecipe();
