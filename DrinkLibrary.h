@@ -31,8 +31,8 @@ class DrinkLibrary {
         //function prototypes
         int DisplayMenuGetChoice();
         void addDrink();
-        void printDrinks();
         void editDrinks();
+        void remove(int);
 };
 
 

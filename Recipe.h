@@ -21,10 +21,11 @@ class Recipe
         ~Recipe();
 
         //Function Prototypes
-        void getRecipe();
-        void getINgredients();
-        void getGlassware();
-        void getInstructions();
+        string getRecipe();
+        string getIngredients();
+        int getnumIngredients();
+        string getGlassware();
+        string getInstructions();
 };
 
 #endif 
