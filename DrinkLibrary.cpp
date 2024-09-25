@@ -251,17 +251,10 @@ int DrinkLibrary::DisplayMenuGetChoice() {
     return choice;
 }
 
-void DrinkLibrary::printDrinks() {
-    cout << "Displaying All Drinks:\n";
-
-    for(int i = 0; i < numDrinks; i++)
-        drinks[i]->printDrink();
-}
-
 //adds a drink to the library
 void DrinkLibrary::addDrink() {
     string drinkName, pairing;
-    double alcoholPercentage;
+    int alcoholPercentage;
     Recipe* drinkRecipe;
     
     cout << "Adding Drink:\n";
@@ -275,23 +268,54 @@ void DrinkLibrary::addDrink() {
     cout << "Enter a Pairing: ";
     getline(cin, pairing);
 
-    //drinkRecipe.createRecipe();
+    //drinkRecipe->createRecipe();
 
     Drink* newDrink = new Drink(drinkName, alcoholPercentage, pairing, drinkRecipe);
 
     Drink** newDrinksArray = new Drink*[numDrinks+1];
-    for(int i =0; i < numDrinks; i++)
+    for(int i = 0; i < numDrinks; i++) {
         newDrinksArray[i] = drinks[i];
+        delete drinks[i];
+    }
     newDrinksArray[numDrinks] = newDrink;
+
+    delete newDrink;
 
     delete[] drinks;
     drinks = newDrinksArray;
+    
     numDrinks++;
+    
+    for(int i = 0; i < numDrinks; i++)
+        delete newDrinksArray[i];
+    delete[] newDrinksArray;
 
 }
 
+void DrinkLibrary::remove(int index) {
+    int position = 0;
+    Drink** newDrinksArray = new Drink*[numDrinks-1];
+    for(int i = 0; i < numDrinks; i++) {
+        if(index != i) {
+            newDrinksArray[position] = drinks[i];
+            position++;
+        }
+        delete drinks[i];
+    }
+
+    delete[] drinks;
+    drinks = newDrinksArray;
+
+    numDrinks--;
+
+    for(int i = 0; i < numDrinks; i++)
+        delete newDrinksArray[i];
+    delete[] newDrinksArray;
+}
+
 void DrinkLibrary::editDrinks() {
-    int drinkIndex, choice;
+    int drinkIndex, choice, alcoholPercentage;
+    string drinkName, pairing;
     
     cout << "Displaying All Drinks:\n";
     for(int i = 0; i < numDrinks; i++)
@@ -312,20 +336,25 @@ void DrinkLibrary::editDrinks() {
 
     switch(choice) {
         case 1:
+            cin.ignore();
             cout << "New Drink Name: ";
-            getline(cin, drinks[drinkIndex]->)
+            getline(cin, drinkName);
+            drinks[drinkIndex]->setName(drinkName);
             break;
         case 2:
             cout << "New Alcohol Percentage: ";
-
+            cin >> alcoholPercentage;
+            drinks[drinkIndex]->setAlc(alcoholPercentage);
             break;
         case 3:
+            cin.ignore();
             cout << "New Drink Pairing: ";
-
+            getline(cin, pairing);
+            drinks[drinkIndex]->setPairing(pairing);
             break;
         case 4:
-            cout << "Drink " << drinkIndex << " Removed\n"
-
+            remove(drinkIndex);
+            cout << "Drink " << drinkIndex << " Removed\n";
             break;
         case 5:
             cout << "Returning to Main Menu.\n";

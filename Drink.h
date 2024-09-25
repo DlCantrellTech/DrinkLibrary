@@ -23,6 +23,12 @@ class Drink {
 
         //function prototypes
         string getName();
+        Recipe getRecipe();
+        int getAlcoholPercentage();
+        string getPairing();
+        void setName(string);
+        void setPairing(string);
+        void setAlc(int);
         void printDrink();
         void editDrink();
 

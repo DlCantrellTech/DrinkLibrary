@@ -19,7 +19,7 @@ int main ()
                 library.addDrink();
                 break;
             case 3:
-
+                library.editDrinks();
                 break;
             case 4:
                 cout << "Exiting Program.\n";

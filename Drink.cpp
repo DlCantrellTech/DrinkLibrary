@@ -26,10 +26,37 @@ string Drink::getName() {
     return drinkName;
 }
 
+Recipe Drink::getRecipe() {
+    return *drinkRecipe;
+}
+
+int Drink::getAlcoholPercentage() {
+    return alcoholPercentage;
+}
+
+string Drink::getPairing() {
+    return pairing;
+}
+
+void Drink::setName(string drinkName) {
+    this->drinkName = drinkName;
+}
+
+void Drink::setPairing(string pairing) {
+    this->pairing = pairing;
+}
+
+void Drink::setAlc(int alcoholPercentage) {
+    this->alcoholPercentage = alcoholPercentage;
+}
+
 //prints the drinks information
 void Drink::printDrink() {
     cout << "\nDrink Name: " << drinkName << endl
          << "Alcohol Percentage: " << alcoholPercentage << endl
-         << "Pairing: " << pairing << endl;
+         << "Pairing: " << pairing << endl
+         << "Glassware: " << drinkRecipe->getGlassware() << endl
+         << "Instructions: " << drinkRecipe->getInstructions() << endl
+         << "Recipe: " << drinkRecipe->getRecipe() << endl;
 
 }
