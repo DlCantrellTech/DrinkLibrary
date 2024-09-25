@@ -20,7 +20,10 @@ class Recipe
         Recipe::~Recipe();
 
         //Function Prototypes
-        void createRecipe();
+        void getRecipe();
+        void getINgredients();
+        void getGlassware();
+        void getInstructions();
 };
 
 #endif 
