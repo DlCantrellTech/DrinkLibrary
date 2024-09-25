@@ -1,12 +1,10 @@
 //class specification file
-#ifndef DRINKFUNCTIONS_H
-#define DRINKFUNCTIONS_H
+#ifndef DRINK_H
+#define DRINK_H
 
 #include <iostream>
 
 using namespace std;
-
-class Recipe;
 
 class Drink {
     private:

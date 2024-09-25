@@ -9,6 +9,7 @@
 #define DrinkLibrary_h
 
 #include "Drink.h"
+#include "Recipe.h"
 
 using namespace std;
 

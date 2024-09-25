@@ -1,5 +1,5 @@
 //includes header file
-#include "DrinkFunctions.h"
+#include "Drink.h"
 #include "Recipe.h"
 
 //constructors
