@@ -27,6 +27,11 @@ class DrinkLibrary {
 
         //destructor
         ~DrinkLibrary();
+
+        //function prototypes
+        int DisplayMenuGetChoice();
+        void addDrink();
+        void printDrinks();
 };
 
 

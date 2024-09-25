@@ -1,28 +1,32 @@
 #include "DrinkFunctions.h"
+#include "DrinkLibrary.h"
 
 #include <iostream>
 using namespace std;
 
-//function prototypes
-int DisplayMenuGetChoice();
-
 int main ()
 {
+    DrinkLibrary library;
     int choice;
 
     do {
-        choice = DisplayMenuGetChoice();
+        choice = library.DisplayMenuGetChoice();
 
         switch(choice) {
             case 1:
-            
+                library.printDrinks();
                 break;
             case 2:
-
+                library.addDrink();
                 break;
             case 3:
 
                 break;
+            case 4:
+                cout << "Exiting Program.\n";
+                break;
+            default:
+                cout << "Invalid choice Please try again.\n";
         }
     } while(choice != 4);
 
