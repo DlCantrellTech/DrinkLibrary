@@ -9,15 +9,16 @@ class Recipe
 {
     private:
         int numIngredients = 0;
-        string *ingredients = nullptr;
+        string* ingredients = nullptr;
         string glassware = " ";
         string instructions = " ";
     public:
         //Constructor
-        Recipe::Recipe();
+        Recipe();
+        Recipe(int, string*, string, string);
 
         //Deconstructor
-        Recipe::~Recipe();
+        ~Recipe();
 
         //Function Prototypes
         void getRecipe();
