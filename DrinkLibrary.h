@@ -18,9 +18,6 @@ class DrinkLibrary {
         Drink** drinks; // pointer to array of pointers to Drink
         int numDrinks;
 
-        void readIn();
-        void printDrinks(Drink** drinks, int numDrinks);
-
     public:
         //constructor
         DrinkLibrary();
@@ -30,6 +27,9 @@ class DrinkLibrary {
         ~DrinkLibrary();
 
         //function prototypes
+        void readIn();
+        void printDrinks();
+        void makeNew();
         int DisplayMenuGetChoice();
         void addDrink();
         void editDrinks();

@@ -21,11 +21,14 @@ class Recipe
         ~Recipe();
 
         //Function Prototypes
-        string getRecipe();
-        string getIngredients();
+        string* getIngredients();
         int getnumIngredients();
         string getGlassware();
         string getInstructions();
+        void setIngredients(string*);
+        void setNumIngredients(int);
+        void setGlassware(string);
+        void setInstructions(string);
 };
 
-#endif 
+#endif

@@ -6,6 +6,9 @@ using namespace std;
 int main ()
 {
     DrinkLibrary library;
+
+    library.readIn();
+
     int choice;
 
     do {
@@ -22,13 +25,16 @@ int main ()
                 library.editDrinks();
                 break;
             case 4:
+                library.makeNew();
+                library.readIn();
+                break;
+            case 5:
                 cout << "Exiting Program.\n";
                 break;
             default:
                 cout << "Invalid choice Please try again.\n";
         }
-    } while(choice != 4);
-
+    } while(choice != 5);
 
     return 0;
 }

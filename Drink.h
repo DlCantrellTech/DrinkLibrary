@@ -6,6 +6,8 @@
 
 using namespace std;
 
+class Recipe;
+
 class Drink {
     private:
         string drinkName, pairing;
@@ -23,14 +25,13 @@ class Drink {
 
         //function prototypes
         string getName();
-        Recipe getRecipe();
+        Recipe* getRecipe();
         int getAlcoholPercentage();
         string getPairing();
         void setName(string);
         void setPairing(string);
         void setAlc(int);
         void printDrink();
-        void editDrink();
 
 };
 

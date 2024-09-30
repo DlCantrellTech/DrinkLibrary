@@ -19,15 +19,16 @@ Drink::Drink(string name, int alcoholPercentage, string pairing, Recipe* drinkRe
 
 //destructor
 Drink::~Drink() {
-    cout << "\nDrink deleted successfully\n";
+    delete drinkRecipe;
+    //cout << "\nDrink deleted successfully\n";
 }
 
 string Drink::getName() {
     return drinkName;
 }
 
-Recipe Drink::getRecipe() {
-    return *drinkRecipe;
+Recipe* Drink::getRecipe() {
+    return drinkRecipe;
 }
 
 int Drink::getAlcoholPercentage() {
@@ -56,7 +57,6 @@ void Drink::printDrink() {
          << "Alcohol Percentage: " << alcoholPercentage << endl
          << "Pairing: " << pairing << endl
          << "Glassware: " << drinkRecipe->getGlassware() << endl
-         << "Instructions: " << drinkRecipe->getInstructions() << endl
-         << "Recipe: " << drinkRecipe->getRecipe() << endl;
+         << "Instructions: " << drinkRecipe->getInstructions() << endl;
 
 }
