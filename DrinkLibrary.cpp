@@ -363,6 +363,12 @@ void DrinkLibrary::editDrinks() {
     cin >> drinkIndex;
     drinkIndex--;
 
+    while(drinkIndex >= numDrinks || drinkIndex < 0) {
+        cout << "Invalid Selection!\nWhich Drink do you want to Edit: ";
+        cin >> drinkIndex;
+        drinkIndex--;
+    }
+
     cout << "1 - Edit Name\n"
         << "2 - Edit Alcohol Percentage\n"
         << "3 - Edit Pairing\n"
