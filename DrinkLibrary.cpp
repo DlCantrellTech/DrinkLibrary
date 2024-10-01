@@ -106,7 +106,7 @@ void DrinkLibrary::readIn()
 void DrinkLibrary::makeNew() {
     ofstream output;  // output file stream
     string fileName;
-    int numDrinks;
+    string* ingredients;
 
     cout << "\n\t\tEnter the name of the new library file (ex. myDrinks.txt): ";
     cin >> fileName;
@@ -172,7 +172,7 @@ void DrinkLibrary::makeNew() {
                << drinks[i]->getPairing() << "*"
                << drinks[i]->getRecipe()->getnumIngredients() << "*";
 
-        string* ingredients = drinks[i]->getRecipe()->getIngredients();
+        ingredients = drinks[i]->getRecipe()->getIngredients();
         for (int j = 0; j < drinks[i]->getRecipe()->getnumIngredients(); j++) {
             output << ingredients[j] << (j < drinks[i]->getRecipe()->getnumIngredients() - 1 ? "*" : "");
         }
@@ -185,9 +185,9 @@ void DrinkLibrary::makeNew() {
     output.close();
     cout << "New drink library saved to " << fileName << endl;
 
-    // Clean up dynamically allocated ingredients
+    //Clean up dynamically allocated ingredients
     for (int i = 0; i < numDrinks; i++) {
-        delete[] drinks[i]->getRecipe()->getIngredients(); 
+        delete drinks[i]; 
     }
     delete[] drinks;                                      // clean up the drinks array
 }
