@@ -1,2 +1,5 @@
-Martini*40*shellfish*2*Gin*Vermouth*Martini glass*Place ice and ingredient in glass. Garnish with green olive.*
-White Russian*24*affogato*3*Vodka*Kahlua*Heavy Cream*Old Fashioned Glass*Add vodka and Kahlua to glass with ice. Top with heavy cream and stir.*
+Martini*40*shellfish*2*2 ounces Gin*1 ounce Vermouth*Martini glass*Place ice and ingredient in glass. Garnish with green olive.*
+White Russian*24*affogato*3*2 ounces Vodka*1 ounce Kahlua*1 ounce Heavy Cream*Old Fashioned Glass*Add vodka and Kahlua to glass with ice. Top with heavy cream and stir.*
+Hot Toddy*6*salted chocolate chip cookies*5*3/4 cup Water*1 1/2 ounces Whiskey*2 teaspoons Honey*2 teaspoons Lemon Juice*1 stick Cinnamon (optional)*Mug*Bring water to simmer in pot. Pour into mug and add remaining ingredients. Stir with spoon or Cinnamon stick until honey is fully incorperated.*
+Whiskey Sour*14*heavy proteins (steak, cheddar, etc.)*4*2 ounces Bourbon*3/4 ounce Lemon Juice*1/2 ounce Simple Syrup*1/2 ounce Egg white (optional)*Rocks glass*Add ingredients to shaker and dry-shake for 30 seconds without ice. Add ice and shake for 15-20 additional seconds until chilled. Strain into glass over fresh ice.*
+Mojito*13*seafood tacos*5*5 Mint Leaves*2 ounces White Rum*1 ounce Lime Juice*1/2 ounce Simple Syrup*Club Soda*Glass*Lightly muddle the mint in the bottom of a cocktail shaker until aromatic. Add the rum, lime juice, simple syrup, a handful of ice and shake. Strain into glass with ice and top with club soda.*

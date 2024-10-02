@@ -1,6 +1,6 @@
 //class specification file
-#ifndef DRINKFUNCTIONS_H
-#define DRINKFUNCTIONS_H
+#ifndef DRINK_H
+#define DRINK_H
 
 #include <iostream>
 
@@ -23,5 +23,16 @@ class Drink {
         //destructor
         ~Drink();
 
-//function prototypes
-int DisplayMenuGetChoice();
+        //function prototypes
+        string getName();
+        Recipe* getRecipe();
+        int getAlcoholPercentage();
+        string getPairing();
+        void setName(string);
+        void setPairing(string);
+        void setAlc(int);
+        void printDrink();
+
+};
+
+#endif

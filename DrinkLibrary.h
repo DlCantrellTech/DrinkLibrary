@@ -8,7 +8,8 @@
 #ifndef DrinkLibrary_h
 #define DrinkLibrary_h
 
-#include "DrinkFunctions.h"
+#include "Drink.h"
+#include "Recipe.h"
 
 using namespace std;
 
@@ -17,18 +18,22 @@ class DrinkLibrary {
         Drink** drinks; // pointer to array of pointers to Drink
         int numDrinks;
 
-        void readIn();
     public:
         //constructor
         DrinkLibrary();
+        DrinkLibrary(Drink**, int);
 
         //destructor
         ~DrinkLibrary();
 
         //function prototypes
+        void readIn();
+        void printDrinks();
+        void makeNew();
         int DisplayMenuGetChoice();
         void addDrink();
-        void printDrinks();
+        void editDrinks();
+        void remove(int);
 };
 
 
