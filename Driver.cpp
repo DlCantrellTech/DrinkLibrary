@@ -12,7 +12,7 @@ int main ()
     int choice;
 
     do {
-        choice = library.DisplayMenuGetChoice();
+        choice = library.displayMenuGetChoice();
 
         switch(choice) {
             case 1:
