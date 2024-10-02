@@ -38,14 +38,20 @@ void DrinkLibrary::readIn()
                 fileName = "WORKING_LIBRARY.txt";
                 break;
 
-            case 2:
-                cout << "\n\t\tEnter name of file: " << endl;
-                cin.ignore();
-                getline(cin, fileName);
-                break;
-        }
+        case 2:
+            cout << "\n\t\tEnter name of file: " << endl;
+            cin.ignore();
+            getline(cin, fileName);
+            break;
 
-    }while (choice != 3);
+        case 3:
+            break;
+        
+        default:
+            cout << "\nInvalid selection!";
+            break;
+    }
+
 
     input.open(fileName);
 
