@@ -20,31 +20,33 @@ void DrinkLibrary::readIn()
     int choice, numDrinks = 0;
     string fileName, inputCounter;
 
-    do {
-        cout << "\n\nWhich file would you like to read from?\n";
-        cout << "\t1. Working Library\n";
-        cout << "\t2. Other\n";
-        cout << "\t3. Back\n";
-        cin >> choice;
-        while(choice < 1 || choice > 3)
-        {
+    
+    cout << "\n\nWhich file would you like to read from?\n";
+    cout << "\t1. Working Library\n";
+    cout << "\t2. Other\n";
+    cout << "\t3. Back\n";
+    cin >> choice;
+    
+    switch(choice)
+    {
+        case 1:
+            fileName = "WORKING_LIBRARY.txt";
+            break;
+
+        case 2:
+            cout << "\n\t\tEnter name of file: " << endl;
+            cin.ignore();
+            getline(cin, fileName);
+            break;
+
+        case 3:
+            break;
+        
+        default:
             cout << "\nInvalid selection!";
-            cin >> choice;
-        }
-        switch(choice)
-        {
-            case 1:
-                fileName = "WORKING_LIBRARY.txt";
-                break;
+            break;
+    }
 
-            case 2:
-                cout << "\n\t\tEnter name of file: " << endl;
-                cin.ignore();
-                getline(cin, fileName);
-                break;
-        }
-
-    }while (choice != 3);
 
     input.open(fileName);
 
