@@ -36,6 +36,7 @@ class DrinkLibrary {
         void addDrink();
         void editDrinks();
         void remove(int);
+        void changeFile();
 };
 
 

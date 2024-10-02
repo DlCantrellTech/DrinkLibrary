@@ -42,7 +42,6 @@ void DrinkLibrary::readIn()
             break;
     }
 
-
     input.open(fileName);
 
     if (input.fail())               // fail case
@@ -56,6 +55,7 @@ void DrinkLibrary::readIn()
     {
         numDrinks++;
     }
+    
     input.clear();
     input.seekg(0);
 
@@ -393,4 +393,15 @@ void DrinkLibrary::editDrinks() {
             break;
     }
     cout << endl;
+}
+
+void DrinkLibrary::changeFile() {
+    
+    //Clean up dynamically allocated ingredients
+    for (int i = 0; i < numDrinks; i++) {
+        delete drinks[i]; 
+    }
+    delete[] drinks;
+
+    readIn();
 }

@@ -29,7 +29,7 @@ int main ()
                 library.readIn();
                 break;
             case 5:
-                library.readIn();
+                library.changeFile();
                 break;
             case 6:
                 cout << "Exiting Program.\n";
@@ -37,7 +37,7 @@ int main ()
             default:
                 cout << "Invalid choice Please try again.\n";
         }
-    } while(choice != 5);
+    } while(choice != 6);
 
     return 0;
 }
