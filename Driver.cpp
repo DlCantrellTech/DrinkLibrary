@@ -29,6 +29,9 @@ int main ()
                 library.readIn();
                 break;
             case 5:
+                library.readIn();
+                break;
+            case 6:
                 cout << "Exiting Program.\n";
                 break;
             default:

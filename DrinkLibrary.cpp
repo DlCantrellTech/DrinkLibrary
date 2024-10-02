@@ -20,31 +20,33 @@ void DrinkLibrary::readIn()
     int choice, numDrinks = 0;
     string fileName, inputCounter;
 
-    do {
-        cout << "\n\nWhich file would you like to read from?\n";
-        cout << "\t1. Working Library\n";
-        cout << "\t2. Other\n";
-        cout << "\t3. Back\n";
-        cin >> choice;
-        while(choice < 1 || choice > 3)
-        {
+    
+    cout << "\n\nWhich file would you like to read from?\n";
+    cout << "\t1. Working Library\n";
+    cout << "\t2. Other\n";
+    cout << "\t3. Back\n";
+    cin >> choice;
+    
+    switch(choice)
+    {
+        case 1:
+            fileName = "WORKING_LIBRARY.txt";
+            break;
+
+        case 2:
+            cout << "\n\t\tEnter name of file: " << endl;
+            cin.ignore();
+            getline(cin, fileName);
+            break;
+
+        case 3:
+            break;
+        
+        default:
             cout << "\nInvalid selection!";
-            cin >> choice;
-        }
-        switch(choice)
-        {
-            case 1:
-                fileName = "WORKING_LIBRARY.txt";
-                break;
+            break;
+    }
 
-            case 2:
-                cout << "\n\t\tEnter name of file: " << endl;
-                cin.ignore();
-                getline(cin, fileName);
-                break;
-        }
-
-    }while (choice != 3);
 
     input.open(fileName);
 
@@ -317,7 +319,7 @@ void DrinkLibrary::remove(int index) {
 
 void DrinkLibrary::editDrinks() {
     int drinkIndex, choice, numIngredients;
-    string drinkName, pairing, glassware, instructions;
+    string newString;
     string* newIngredients = nullptr;
     
     //displays all drink names and assigns them an index
@@ -328,6 +330,7 @@ void DrinkLibrary::editDrinks() {
     //asks the user for the index of the drink they want to edit
     drinkIndex = validateInt("\nWhich Drink do you want to Edit: ", numDrinks, 0);
     drinkIndex--;
+    cout << "\n\t\tEditing: " << drinks[drinkIndex]->getName() << endl;
 
     cout << "\nDrink Being edited: " << drinks[drinkIndex]->getName() << endl;
 
@@ -338,8 +341,8 @@ void DrinkLibrary::editDrinks() {
             //edits the drinks name
             cin.ignore();
             cout << "New Drink Name: ";
-            getline(cin, drinkName);
-            drinks[drinkIndex]->setName(drinkName);
+            getline(cin, newString);
+            drinks[drinkIndex]->setName(newString);
             break;
 
         case 2:
@@ -351,8 +354,8 @@ void DrinkLibrary::editDrinks() {
             //edits the drinks pairing
             cin.ignore();
             cout << "New Drink Pairing: ";
-            getline(cin, pairing);
-            drinks[drinkIndex]->setPairing(pairing);
+            getline(cin, newString);
+            drinks[drinkIndex]->setPairing(newString);
             break;
 
         case 4:
@@ -375,15 +378,15 @@ void DrinkLibrary::editDrinks() {
             //edits glassware
             cin.ignore();
             cout << "New Drink Glassware: ";
-            getline(cin, glassware);
-            drinks[drinkIndex]->getRecipe()->setGlassware(glassware);
+            getline(cin, newString);
+            drinks[drinkIndex]->getRecipe()->setGlassware(newString);
             break;
         case 6:
             //edits drink instructions
             cin.ignore();
             cout << "New Drink Instructions (type full instructions before hitting enter): ";
-            getline(cin, instructions);
-            drinks[drinkIndex]->getRecipe()->setInstructions(instructions);
+            getline(cin, newString);
+            drinks[drinkIndex]->getRecipe()->setInstructions(newString);
             break;
         case 7:
             //removes the selected drink
@@ -394,4 +397,5 @@ void DrinkLibrary::editDrinks() {
             cout << "Returning to Main Menu.\n";
             break;
     }
+    cout << endl;
 }
