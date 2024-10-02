@@ -22,9 +22,10 @@ void DrinkLibrary::readIn()
 
     do {
         cout << "\n\nWhich file would you like to read from?\n";
-        cout << "\t1. Working Library\n";
+        cout << "\n\t1. Working Library\n";
         cout << "\t2. Other\n";
         cout << "\t3. Back\n";
+        cout << "\n\tChoice: ";
         cin >> choice;
         while(choice < 1 || choice > 3)
         {
@@ -110,54 +111,6 @@ void DrinkLibrary::makeNew() {
 
     cout << "\n\t\tEnter the name of the new library file (ex. myDrinks.txt): ";
     cin >> fileName;
-
-    /*
-    cout << "How many drinks would you like to add? ";
-    cin >> numDrinks;
-
-    drinks = new Drink*[numDrinks];  // dynamically allocate array of pointers to Drink
-
-    for (int i = 0; i < numDrinks; i++) {
-        string name, pairing, glassware, instructions;
-        int alcoholPercentage, numIngredients;
-
-        cout << "\n\t\tEntering details for drink #" << (i + 1) << endl;
-        
-        cout << "\n\t\tName: ";
-        cin.ignore();
-        getline(cin, name);
-        
-        cout << "\n\t\tAlcohol Percentage: ";
-        cin >> alcoholPercentage;
-
-        cout << "\n\t\tPairing: ";
-        cin.ignore();
-        getline(cin, pairing);
-
-        cout << "\n\t\tNumber of Ingredients: ";
-        cin >> numIngredients;
-        string* ingredients = new string[numIngredients];
-        for (int j = 0; j < numIngredients; j++) {
-            cout << "\n\t\tIngredient #: " << (j + 1) << ": ";
-            cin.ignore();
-            getline(cin, ingredients[j]);
-        }
-
-        cout << "\n\t\tGlassware: ";
-        getline(cin, glassware);
-
-        cout << "\n\t\tInstructions (type full instructions before hitting enter): ";
-        getline(cin, instructions);
-
-         Create a Recipe object
-        Recipe* drinkRecipe = new Recipe(numIngredients, ingredients, glassware, instructions);
-
-         Create a Drink object
-        drinks[i] = new Drink(name, alcoholPercentage, pairing, drinkRecipe);
-
-        delete drinkRecipe;
-    }
-    */
 
     output.open(fileName);
     if (output.fail()) {
@@ -252,13 +205,13 @@ DrinkLibrary::~DrinkLibrary()
 int DrinkLibrary::DisplayMenuGetChoice() {
     int choice;
 
-    cout << "DRINK LIBRARY\n"
-		 << "1 - Display all Drinks\n"
-		 << "2 - Add a Drink\n"
-		 << "3 - Edit a Drink\n"
-         << "4 - Save New Drink Library\n"
-         << "5 - Change Library File\n"
-         << "6 - End the Program\n"
+    cout << "\n\t\tDRINK LIBRARY\n"
+		 << "\n\t\t1 - Display all Drinks\n"
+		 << "\t\t2 - Add a Drink\n"
+		 << "\t\t3 - Edit a Drink\n"
+         << "\t\t4 - Save New Drink Library\n"
+         << "\t\t5 - Change Library File\n"
+         << "\t\t6 - End the Program\n"
 		 << "\nCHOICE: ";
 
     cin >> choice;
