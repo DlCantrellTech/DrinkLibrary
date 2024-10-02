@@ -257,7 +257,8 @@ int DrinkLibrary::DisplayMenuGetChoice() {
 		 << "2 - Add a Drink\n"
 		 << "3 - Edit a Drink\n"
          << "4 - Save New Drink Library\n"
-         << "5 - End the Program\n"
+         << "5 - Change Library File\n"
+         << "6 - End the Program\n"
 		 << "\nCHOICE: ";
 
     cin >> choice;
@@ -362,6 +363,7 @@ void DrinkLibrary::editDrinks() {
     cout << "\nWhich Drink do you want to Edit: ";
     cin >> drinkIndex;
     drinkIndex--;
+    cout << "\n\t\tEditing: " << drinks[drinkIndex]->getName() << endl;
 
     while(drinkIndex >= numDrinks || drinkIndex < 0) {
         cout << "Invalid Selection!\nWhich Drink do you want to Edit: ";
@@ -380,6 +382,8 @@ void DrinkLibrary::editDrinks() {
         << "\nCHOICE: ";
 
     cin >> choice;
+    cout << endl;
+
 
     switch(choice) {
         case 1:
@@ -447,4 +451,5 @@ void DrinkLibrary::editDrinks() {
         default:
             cout << "Invalid choice Please try again.\n";
     }
+    cout << endl;
 }
