@@ -19,14 +19,9 @@ void DrinkLibrary::readIn()
     // choose which file to read from
     int choice, numDrinks = 0;
     string fileName, inputCounter;
+    
+    choice = validateInt("\n\nWhich file would you like to read from?\n\t1. Working Library\n\t2. Other\n\t3. Back\n", 3, 0);
 
-    
-    cout << "\n\nWhich file would you like to read from?\n";
-    cout << "\t1. Working Library\n";
-    cout << "\t2. Other\n";
-    cout << "\t3. Back\n";
-    cin >> choice;
-    
     switch(choice)
     {
         case 1:
@@ -206,7 +201,7 @@ DrinkLibrary::~DrinkLibrary()
 //prints main menu
 int DrinkLibrary::displayMenuGetChoice() {
 
-    return validateInt("\nDRINK LIBRARY\n1 - Display all Drinks\n2 - Add a Drink\n3 - Edit a Drink\n4 - Save New Drink Library\n5 - End the Program\n\nCHOICE: ", 5, 0);
+    return validateInt("\nDRINK LIBRARY\n1 - Display all Drinks\n2 - Add a Drink\n3 - Edit a Drink\n4 - Save New Drink Library\n5 - Change Library File\n6 - End the Program\n\nCHOICE: ", 6, 0);
 
 }
 
