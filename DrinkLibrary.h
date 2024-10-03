@@ -30,10 +30,13 @@ class DrinkLibrary {
         void readIn();
         void printDrinks();
         void makeNew();
-        int DisplayMenuGetChoice();
+        int displayMenuGetChoice();
+        int validateInt(string);
+        int validateInt(string, int, int);
         void addDrink();
         void editDrinks();
         void remove(int);
+        void changeFile();
 };
 
 

@@ -19,21 +19,14 @@ void DrinkLibrary::readIn()
 
     int choice, numDrinks = 0;
     string fileName, inputCounter;
+    
+    choice = validateInt("\n\nWhich file would you like to read from?\n\t1. Working Library\n\t2. Other\n\t3. Back\n", 3, 0);
 
-    // choose which file to read from
-        cout << "\n\nWhich file would you like to read from?\n";
-        cout << "\n\t1. Working Library\n";
-        cout << "\t2. Other\n";
-        cout << "\t3. Exit\n";
-        cout << "\nChoice: ";
-        cin >> choice;
-    do{
-
-        switch(choice)
-        {
-            case 1:
-                fileName = "WORKING_LIBRARY.txt";
-                break;
+    switch(choice)
+    {
+        case 1:
+            fileName = "WORKING_LIBRARY.txt";
+            break;
 
             case 2:
                 fileName.clear();
@@ -46,27 +39,28 @@ void DrinkLibrary::readIn()
                 }
                 break;
 
-            case 3:
-                return;
-            
-            default:
-                cout << "\nInvalid selection!";
-                cin >> choice;
-                break;
-        }
-        input.open(fileName);
-        if (input.fail())               // fail case
-            {
-                cout << "\n\t\tFailed to open input file. Check for " << fileName << " and try again." << endl;
-            }
-    }while(!input.is_open());
+        case 3:
+            break;
+        
+        default:
+            cout << "\nInvalid selection!";
+            break;
+    }
 
+    input.open(fileName);
+
+    if (input.fail())               // fail case
+    {
+        cout << "\n\t\tFailed to open input file. Check for " << fileName << "and try again." << endl;
+        return;
+    }
 
     // count numDrinks
     while (getline(input, inputCounter, '\n'))
     {
         numDrinks++;
     }
+    
     input.clear();
     input.seekg(0);
 
@@ -107,6 +101,8 @@ void DrinkLibrary::readIn()
 
       input.ignore();
     }
+
+    cout << "\nSuccessfully read input file: " << fileName << endl;
 
     input.close();
 }
@@ -202,28 +198,40 @@ DrinkLibrary::~DrinkLibrary()
     for(int i = 0; i < numDrinks; i++)
         delete drinks[i];
     delete[] drinks;
-    //cout << "\nDrinkLibrary deleted successfully" << endl;
 }
 
 
 //prints main menu
-int DrinkLibrary::DisplayMenuGetChoice() {
-    int choice;
+int DrinkLibrary::displayMenuGetChoice() {
 
-    cout << "----------------------------------------------------"
-         << "\n\t\t    DRINK LIBRARY\n\n"
-         << "----------------------------------------------------\n\n"
-		 << "\t1 - Display all Drinks\n"
-		 << "\t2 - Add a Drink\n"
-		 << "\t3 - Edit a Drink\n"
-         << "\t4 - Save New Drink Library\n"
-         << "\t5 - Change Library File\n"
-         << "\t6 - End the Program\n"
-		 << "\nCHOICE: ";
+    return validateInt("\nDRINK LIBRARY\n1 - Display all Drinks\n2 - Add a Drink\n3 - Edit a Drink\n4 - Save New Drink Library\n5 - Change Library File\n6 - End the Program\n\nCHOICE: ", 6, 0);
 
-    cin >> choice;
-    
-    return choice;
+}
+
+int DrinkLibrary::validateInt(string prompt) {
+    int num;
+    cout << prompt;
+
+    while(!(cin >> num)) {
+        cout << "Error Try Again:\n" << prompt;
+        cin.clear();
+        cin.ignore(1000, '\n');
+    }
+
+    return num;
+}
+
+int DrinkLibrary::validateInt(string prompt, int high, int low) {
+    int num;
+    cout << prompt;
+
+    while(!(cin >> num) || (num > high || num <= low)) {
+        cout << "Error Try Again:\n" << prompt;
+        cin.clear();
+        cin.ignore(1000, '\n');
+    }
+
+    return num;
 }
 
 //adds a drink to the library
@@ -237,13 +245,12 @@ void DrinkLibrary::addDrink() {
     cin.ignore();
     cout << "\t\tEnter Drink Name: ";
     getline(cin, drinkName);
-    cout << "\t\tEnter the alcohol Percentage: ";
-    cin >> alcoholPercentage;
+    alcoholPercentage = validateInt("\t\tEnter the alcohol Percentage: ");
     cin.ignore();
     cout << "\t\tEnter a Pairing: ";
     getline(cin, pairing);
-    cout << "\t\tNumber of Ingredients: ";
-    cin >> numIngredients;
+
+    numIngredients = validateInt("\t\tNumber of Ingredients: ");
     cin.ignore();
     string* ingredients = new string[numIngredients];
     for (int j = 0; j < numIngredients; j++) {
@@ -309,8 +316,8 @@ void DrinkLibrary::remove(int index) {
 }
 
 void DrinkLibrary::editDrinks() {
-    int drinkIndex, choice, alcoholPercentage, numIngredients;
-    string drinkName, pairing, glassware, instructions;
+    int drinkIndex, choice, numIngredients;
+    string newString;
     string* newIngredients = nullptr;
     
     //displays all drink names and assigns them an index
@@ -319,59 +326,39 @@ void DrinkLibrary::editDrinks() {
         cout << "\t(" << i+1 << ") Drink Name: " << drinks[i]->getName() << endl;
     
     //asks the user for the index of the drink they want to edit
-    cout << "\n\tWhich Drink do you want to Edit: ";
-    cin >> drinkIndex;
+    drinkIndex = validateInt("\nWhich Drink do you want to Edit: ", numDrinks, 0);
     drinkIndex--;
     cout << "\n\tEditing: " << drinks[drinkIndex]->getName() << endl;
 
-    while(drinkIndex >= numDrinks || drinkIndex < 0) {
-        cout << "Invalid Selection!\nWhich Drink do you want to Edit: ";
-        cin >> drinkIndex;
-        drinkIndex--;
-    }
+    cout << "\nDrink Being edited: " << drinks[drinkIndex]->getName() << endl;
 
-    cout << "\t\t1 - Edit Name\n"
-         << "\t\t2 - Edit Alcohol Percentage\n"
-         << "\t\t3 - Edit Pairing\n"
-         << "\t\t4 - Edit Ingredients\n"
-         << "\t\t5 - Edit Glassware\n"
-         << "\t\t6 - Edit Instructions\n"
-         << "\t\t7 - Remove Drink\n"
-         << "\t\t8 - Back to Main\n"
-         << "\nCHOICE: ";
-
-    cin >> choice;
-    cout << endl;
-
+    choice = validateInt("1 - Edit Name\n2 - Edit Alcohol Percentage\n3 - Edit Pairing\n4 - Edit Ingredients\n5 - Edit Glassware\n6 - Edit Instructions\n7 - Remove Drink\n8 - Back to Main\n\nCHOICE: ", 8, 0);
 
     switch(choice) {
         case 1:
             //edits the drinks name
             cin.ignore();
             cout << "New Drink Name: ";
-            getline(cin, drinkName);
-            drinks[drinkIndex]->setName(drinkName);
+            getline(cin, newString);
+            drinks[drinkIndex]->setName(newString);
             break;
 
         case 2:
             //edits the alcohol percentage
-            cout << "New Alcohol Percentage: ";
-            cin >> alcoholPercentage;
-            drinks[drinkIndex]->setAlc(alcoholPercentage);
+            drinks[drinkIndex]->setAlc(validateInt("New Alcohol Percentage: "));
             break;
 
         case 3:
             //edits the drinks pairing
             cin.ignore();
             cout << "New Drink Pairing: ";
-            getline(cin, pairing);
-            drinks[drinkIndex]->setPairing(pairing);
+            getline(cin, newString);
+            drinks[drinkIndex]->setPairing(newString);
             break;
 
         case 4:
             //creates new ingredients for a drink
-            cout << "\t\tNumber of Ingredients: ";
-            cin >> numIngredients;
+            numIngredients = validateInt("\t\tNumber of Ingredients: ");
             
             cin.ignore();
             newIngredients = new string[numIngredients];
@@ -389,15 +376,15 @@ void DrinkLibrary::editDrinks() {
             //edits glassware
             cin.ignore();
             cout << "New Drink Glassware: ";
-            getline(cin, glassware);
-            drinks[drinkIndex]->getRecipe()->setGlassware(glassware);
+            getline(cin, newString);
+            drinks[drinkIndex]->getRecipe()->setGlassware(newString);
             break;
         case 6:
             //edits drink instructions
             cin.ignore();
             cout << "New Drink Instructions (type full instructions before hitting enter): ";
-            getline(cin, instructions);
-            drinks[drinkIndex]->getRecipe()->setInstructions(instructions);
+            getline(cin, newString);
+            drinks[drinkIndex]->getRecipe()->setInstructions(newString);
             break;
         case 7:
             //removes the selected drink
@@ -407,8 +394,17 @@ void DrinkLibrary::editDrinks() {
         case 8:
             cout << "Returning to Main Menu.\n";
             break;
-        default:
-            cout << "Invalid choice Please try again.\n";
     }
     cout << endl;
+}
+
+void DrinkLibrary::changeFile() {
+    
+    //Clean up dynamically allocated ingredients
+    for (int i = 0; i < numDrinks; i++) {
+        delete drinks[i]; 
+    }
+    delete[] drinks;
+
+    readIn();
 }

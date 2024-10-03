@@ -12,7 +12,7 @@ int main ()
     int choice;
 
     do {
-        choice = library.DisplayMenuGetChoice();
+        choice = library.displayMenuGetChoice();
 
         switch(choice) {
             case 1:
@@ -29,7 +29,7 @@ int main ()
                 library.readIn();
                 break;
             case 5:
-                library.readIn();
+                library.changeFile();
                 break;
             case 6:
                 cout << "\n\t\tExiting Program.\n";
