@@ -20,7 +20,7 @@ void DrinkLibrary::readIn()
     int choice, numDrinks = 0;
     string fileName, inputCounter;
     
-    choice = validateInt("\n\nWhich file would you like to read from?\n\t1. Working Library\n\t2. Other\n\t3. Back\n", 3, 0);
+    choice = validateInt("\n\nWhich file would you like to read from?\n\n\t1. Working Library\n\t2. Other\n\t3. Back\n", 3, 0);
 
     switch(choice)
     {
@@ -204,7 +204,7 @@ DrinkLibrary::~DrinkLibrary()
 //prints main menu
 int DrinkLibrary::displayMenuGetChoice() {
 
-    return validateInt("\nDRINK LIBRARY\n1 - Display all Drinks\n2 - Add a Drink\n3 - Edit a Drink\n4 - Save New Drink Library\n5 - Change Library File\n6 - End the Program\n\nCHOICE: ", 6, 0);
+    return validateInt("\n--------------------------------------------\n\t\tDRINK LIBRARY\n--------------------------------------------\n\t1 - Display all Drinks\n\t2 - Add a Drink\n\t3 - Edit a Drink\n\t4 - Save New Drink Library\n\t5 - Change Library File\n\t6 - End the Program\n\nCHOICE: ", 6, 0);
 
 }
 
@@ -332,7 +332,7 @@ void DrinkLibrary::editDrinks() {
 
     cout << "\nDrink Being edited: " << drinks[drinkIndex]->getName() << endl;
 
-    choice = validateInt("1 - Edit Name\n2 - Edit Alcohol Percentage\n3 - Edit Pairing\n4 - Edit Ingredients\n5 - Edit Glassware\n6 - Edit Instructions\n7 - Remove Drink\n8 - Back to Main\n\nCHOICE: ", 8, 0);
+    choice = validateInt("\n\t1 - Edit Name\n\t2 - Edit Alcohol Percentage\n\t3 - Edit Pairing\n\t4 - Edit Ingredients\n\t5 - Edit Glassware\n\t6 - Edit Instructions\n\t7 - Remove Drink\n\t8 - Back to Main\n\nCHOICE: ", 8, 0);
 
     switch(choice) {
         case 1:
