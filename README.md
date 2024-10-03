@@ -12,3 +12,5 @@ Name (Drink 2)  * Alcohol Percentage (Drink 2) * Pairing (Drink 2) * # Ingredien
 
 etc.
 
+
+FOR INSTRUCTORS: the TEST_CASE.txt functions as intended, although not having inputs shown via this method makes some parts of the program look wonky.
