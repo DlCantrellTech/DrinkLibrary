@@ -1,0 +1,70 @@
+1
+1
+2
+New Drink
+test
+420
+Food
+test
+4
+First Ingredient
+Second Ingredient
+Third Ingredient
+Fourth Ingredient
+Tall Glass
+Give the person testing this program a nice cold one.
+1
+3
+6
+1
+Newer Drink
+3
+6
+2
+70
+3
+6
+3
+Good Food
+3
+6
+4
+a
+2
+Ing 1
+Ing 2
+3
+6
+5
+Drinking Horn
+3
+6
+6
+Good testing
+1
+3
+6
+7
+1
+2
+1
+2
+3
+1
+2
+3
+123
+3
+6
+8
+4
+testNewLibrary.txt
+2
+testNewLibrary.txt
+1
+5
+1
+5
+3
+6
+
