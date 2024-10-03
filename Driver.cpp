@@ -32,12 +32,12 @@ int main ()
                 library.readIn();
                 break;
             case 6:
-                cout << "Exiting Program.\n";
-                break;
+                cout << "\n\t\tExiting Program.\n";
+                return(0);
             default:
-                cout << "Invalid choice Please try again.\n";
+                cout << "\n\t\tInvalid choice Please try again.\n";
         }
-    } while(choice != 5);
+    } while(choice != 6);
 
     return 0;
 }
