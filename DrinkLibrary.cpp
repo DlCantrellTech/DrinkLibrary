@@ -12,6 +12,11 @@
 
 using namespace std;
 
+/*  readIn: obtains information from input file and populates a new array of Drinks.
+ *  Parameters: none
+ *  Class(es) used: Drink, Recipe
+ *  returns: nothing
+ */
 void DrinkLibrary::readIn()
 {
     ifstream input;                 // cin file
@@ -24,32 +29,32 @@ void DrinkLibrary::readIn()
 
     switch(choice)
     {
-        case 1:
+        case 1:                                 // base library
             fileName = "WORKING_LIBRARY.txt";
             break;
 
-            case 2:
-                fileName.clear();
-                cout << "\n\t\tEnter name of file or hit Enter key to exit: " << endl;
-                cin.ignore();
-                getline(cin, fileName);
-                if(fileName.empty())
-                {
-                    return;
-                }
-                break;
+        case 2:                                 // custom library
+            fileName.clear();
+            cout << "\n\t\tEnter name of file or hit Enter key to exit: " << endl;
+            cin.ignore();
+            getline(cin, fileName);
+            if(fileName.empty())
+            {
+                return;
+            }
+            break;
 
-        case 3:
+        case 3:                                 // exit
             break;
         
-        default:
+        default:                                // input protection
             cout << "\nInvalid selection!";
             break;
     }
 
     input.open(fileName);
 
-    if (input.fail())               // fail case
+    if (input.fail())                           // fail case
     {
         cout << "\n\t\tFailed to open input file. Check for " << fileName << "and try again." << endl;
         return;
@@ -64,14 +69,14 @@ void DrinkLibrary::readIn()
     input.clear();
     input.seekg(0);
 
-    drinks = new Drink*[numDrinks]; // dynamically allocate array of pointers to Drink
-    this->numDrinks = numDrinks;    // set numDrinks to the equivalent class variable
+    drinks = new Drink*[numDrinks];              // dynamically allocate array of pointers to Drink
+    this->numDrinks = numDrinks;                 // set numDrinks to the equivalent class variable
 
     for (int i = 0; i < numDrinks; i++)
     {
       string name, pairing, glassware, instructions;
       string* ingredients;
-      int alchololPercentage, numIngredients;   // need to incorperate numIngredients into Recipe class
+      int alchololPercentage, numIngredients;    
 
       // obtain values for parameters from input file
       getline(input, name, '*');
@@ -81,7 +86,7 @@ void DrinkLibrary::readIn()
 
       getline(input, pairing, '*');
 
-      input >> numIngredients;                  // need to incorperate numIngredients into Recipe class !!!!!!!!!!!!!!!!!!
+      input >> numIngredients;                  
       input.ignore();               // ingore *
       ingredients = new string[numIngredients];
       for(int j = 0; j < numIngredients; j++)
@@ -107,6 +112,11 @@ void DrinkLibrary::readIn()
     input.close();
 }
 
+/*  makeNew: creates a new .txt file and saves the current Drinks array to that file, creating a new library to read from.
+ *  Parameters: none
+ *  Class(es) used: Drink, Recipe
+ *  returns: nothing
+ */
 void DrinkLibrary::makeNew() {
     ofstream output;  // output file stream
     string fileName;
@@ -115,12 +125,14 @@ void DrinkLibrary::makeNew() {
     cout << "\n\tEnter the name of the new library file (ex. myDrinks.txt): ";
     cin >> fileName;
     output.open(fileName);
+
+    // fail case
     if (output.fail()) {
         cout << "\n\t\tFailed to open output file." << endl;
         return;
     }
 
-    // Write drinks to the file
+    // Write drinks to the file using * as delimiter
     for (int i = 0; i < numDrinks; i++) {
         output << drinks[i]->getName() << "*"
                << drinks[i]->getAlcoholPercentage() << "*"
@@ -144,11 +156,18 @@ void DrinkLibrary::makeNew() {
     for (int i = 0; i < numDrinks; i++) {
         delete drinks[i]; 
     }
-    delete[] drinks;                                      // clean up the drinks array
+    // clean up the drinks array
+    delete[] drinks;
 }
 
+/*  printDrinks: displays content of current working Drinks array to user in readable format
+ *  Parameters: none
+ *  Class(es) used: Drink, Recipe
+ *  returns: nothing
+ */
 void DrinkLibrary::printDrinks()
 {
+    // fail case
     if (numDrinks <=0 )
     {
         cout << "\n\t\tNo drinks available." << endl;
@@ -201,13 +220,23 @@ DrinkLibrary::~DrinkLibrary()
 }
 
 
-//prints main menu
+/*  displayMenuGetChoice: prints the main menu of the program and allows user to navigate based on propper input only (e.g. 1-6)
+ *  Parameters: none
+ *  Class(es) used: none
+ *  returns: validateInt func.
+ */
 int DrinkLibrary::displayMenuGetChoice() {
 
     return validateInt("\n--------------------------------------------\n\t\tDRINK LIBRARY\n--------------------------------------------\n\t1 - Display all Drinks\n\t2 - Add a Drink\n\t3 - Edit a Drink\n\t4 - Save New Drink Library\n\t5 - Change Library File\n\t6 - End the Program\n\nCHOICE: ", 6, 0);
 
 }
 
+/*  validateInt: used for user input protection on int values
+ *  Parameters: 
+ *      string prompt: prompted value from user
+ *  Class(es) used: none
+ *  returns: num (valid user choice)
+ */
 int DrinkLibrary::validateInt(string prompt) {
     int num;
     cout << prompt;
@@ -221,6 +250,13 @@ int DrinkLibrary::validateInt(string prompt) {
     return num;
 }
 
+/*  validateInt: used for user input protection on int values (menu options e.g. 1-6)
+ *               overloaded form of validateInt
+ *  Parameters: 
+ *      string prompt: prompted menu of options to choose from
+ *  Class(es) used: none
+ *  returns: num (valid user choice)
+ */
 int DrinkLibrary::validateInt(string prompt, int high, int low) {
     int num;
     cout << prompt;
@@ -234,7 +270,11 @@ int DrinkLibrary::validateInt(string prompt, int high, int low) {
     return num;
 }
 
-//adds a drink to the library
+/*  addDrink: allows user to input drink into copy of current Drinks array and discards old array
+ *  Parameters: none
+ *  Class(es) used: Drink, Recipe
+ *  returns: nothing
+ */
 void DrinkLibrary::addDrink() {
     string drinkName, pairing, glassware, instructions;
     int alcoholPercentage, numIngredients;
@@ -288,7 +328,12 @@ void DrinkLibrary::addDrink() {
 
 }
 
-//removes a drink from the drinks array given an index
+/*  remove: deletes an entry from Drinks array by creating new array without excluded value and discarding old array
+ *  Parameters:
+ *      int index: index value of drink to be removed from array
+ *  Class(es) used: Drink
+ *  returns: nothing
+ */
 void DrinkLibrary::remove(int index) {
     int position = 0;
 
@@ -315,6 +360,11 @@ void DrinkLibrary::remove(int index) {
 
 }
 
+/*  editDrinks: allows user to alter elements of current Drinks array
+ *  Parameters: none
+ *  Class(es) used: Drink, Recipe
+ *  returns: nothing
+ */
 void DrinkLibrary::editDrinks() {
     int drinkIndex, choice, numIngredients;
     string newString;
@@ -398,6 +448,11 @@ void DrinkLibrary::editDrinks() {
     cout << endl;
 }
 
+/*  changeFile: discards current Drinks array and uses readIn func. to populate a new one
+ *  Parameters: none
+ *  Class(es) used: none
+ *  returns: nothing
+ */
 void DrinkLibrary::changeFile() {
     
     //Clean up dynamically allocated ingredients
